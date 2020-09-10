@@ -62,10 +62,10 @@
             newWidget("30", symbol, "tradingview_30m");
             newWidget("60", symbol, "tradingview_1h");
             newWidget("120", symbol, "tradingview_2h");
-            newWidget("180", symbol, "tradingview_3h");
+            // newWidget("180", symbol, "tradingview_3h");
             newWidget("240", symbol, "tradingview_4h");
-            newWidget("D", symbol, "tradingview_1d");
-            newWidget("W", symbol, "tradingview_1w");
+            // newWidget("D", symbol, "tradingview_1d");
+            // newWidget("W", symbol, "tradingview_1w");
         }
 
         $(document).ready(function(){
@@ -89,6 +89,7 @@
                   <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:GBPNZD')">GBP-NZD</button>
                   <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:XAUUSD')">XAU-USD</button>
                   <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:USDJPY')">USD-JPY</button>
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:BTCUSD')">BTC-USD</button>
                 </div>
             </div>
         </div>
