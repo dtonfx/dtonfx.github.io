@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradingview multi widgets</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <style>
+        .side-menu {
+            position: absolute;
+            top: 12px;
+        }
+        .tv-container {
+            position: absolute;
+            top: 70px;
+        }
+    </style>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body>
+    <script>
+        newWidget = (interval, symbol, container_id) => {
+            new TradingView.widget(
+            {
+                "auto": true,
+                "symbol": symbol,
+                "interval": interval,
+                "timezone": "Asia/Ho_Chi_Minh",
+                "theme": "light",
+                "style": "1",
+                "locale": "vi_VN",
+                "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "save_image": false,
+                "studies": [
+                "StochasticRSI@tv-basicstudies"
+                ],
+                "container_id": container_id
+            }
+            );
+            
+        }
+        reloadWidget = (symbol = "FOREXCOM:GBPUSD") => {
+            $('.tvwg').remove();
+            $('.tv-container').append('<div class="tvwg" id="tradingview_1m"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_5m"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_15m"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_30m"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_1h"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_2h"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_3h"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_4h"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_1d"></div>');
+            $('.tv-container').append('<div class="tvwg" id="tradingview_1w"></div>');
+            $('#dropdownTitle').text(symbol.substr(9));
+            newWidget("1", symbol, "tradingview_1m");
+            newWidget("5", symbol, "tradingview_5m");
+            newWidget("15", symbol, "tradingview_15m");
+            newWidget("30", symbol, "tradingview_30m");
+            newWidget("60", symbol, "tradingview_1h");
+            newWidget("120", symbol, "tradingview_2h");
+            newWidget("180", symbol, "tradingview_3h");
+            newWidget("240", symbol, "tradingview_4h");
+            newWidget("D", symbol, "tradingview_1d");
+            newWidget("W", symbol, "tradingview_1w");
+        }
+
+        $(document).ready(function(){
+            
+            reloadWidget();
+        });
+        
+        
+
+    </script>
+    <div class="">
+        <div class="side-menu">
+            <div class="dropdown" id="dropdownbtn">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span id="dropdownTitle">GPB-USD</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:GBPUSD')">GBP-USD</button>
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:GBPAUD')">GBP-AUD</button>
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:GBPJPY')">GBP-JPY</button>
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:GBPNZD')">GBP-NZD</button>
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:XAUUSD')">XAU-USD</button>
+                  <button class="dropdown-item" type="button" onclick="reloadWidget('FOREXCOM:USDJPY')">USD-JPY</button>
+                </div>
+            </div>
+        </div>
+        <div class="tv-container">
+        </div>
+    </div>
+    
+  
+</body>
+</html>
